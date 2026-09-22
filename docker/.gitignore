@@ -1,0 +1,20 @@
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# Env & Secrets — MUST NOT be committed
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+
+# Docker runtime
+*.pid
+*.log
+logs/
+
+# Data volumes (if any)
+data/
+volumes/
