@@ -1,0 +1,60 @@
+# ==================================================
+# Compiled
+# ==================================================
+*.class
+*.jar
+*.war
+!**/src/**/*.jar
+!.mvn/wrapper/maven-wrapper.jar
+!gradle/wrapper/gradle-wrapper.jar
+
+# ==================================================
+# Maven / Gradle build
+# ==================================================
+target/
+build/
+out/
+bin/
+.gradle/
+
+# Keep Maven wrapper
+!.mvn/wrapper/maven-wrapper.properties
+
+# ==================================================
+# IDE
+# ==================================================
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.settings/
+.classpath
+.project
+
+# ==================================================
+# Env & Secrets
+# ==================================================
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+*.jks
+*.p12
+
+# ==================================================
+# Logs
+# ==================================================
+logs/
+*.log
+spring.log
+
+# ==================================================
+# Test output
+# ==================================================
+target/surefire-reports/
+target/failsafe-reports/
+target/site/
+target/jacoco.exec
+*.exec
