@@ -1,0 +1,62 @@
+package com.pratik.job.controller;
+
+import com.pratik.job.response.ApiResponse;
+import com.pratik.job.response.LanguageResponse;
+import com.pratik.job.payload.AddLanguageRequest;
+import com.pratik.job.service.LanguageService;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequiredArgsConstructor
+@RequestMapping("/api/resumes/{resumeId}/languages")
+public class LanguageController {
+
+    private final LanguageService languageService;
+
+    @PostMapping
+    public ResponseEntity<LanguageResponse> addLanguage(
+            @PathVariable Long resumeId,
+            @RequestHeader("X-User-Id") Long candidateId,
+            @RequestBody @Valid AddLanguageRequest addLanguageRequest) throws Exception {
+
+        return ResponseEntity.ok(
+                languageService.addLanguage(resumeId, candidateId, addLanguageRequest)
+        );
+    }
+
+    @GetMapping
+    public ResponseEntity<List<LanguageResponse>> getLanguages(
+            @PathVariable Long resumeId) {
+        return ResponseEntity.ok(languageService.getLanguages(resumeId));
+    }
+
+    @PutMapping("/{languageId}")
+    public ResponseEntity<LanguageResponse> updateLanguage(
+            @PathVariable Long resumeId,
+            @PathVariable Long languageId,
+            @RequestHeader("X-User-Id") Long candidateId,
+            @RequestBody @Valid AddLanguageRequest req) throws Exception {
+        return ResponseEntity.ok(
+                languageService.updateLanguage(languageId, resumeId, candidateId, req)
+        );
+    }
+
+    @DeleteMapping
+    public ResponseEntity<ApiResponse> deleteLanguage(
+            @PathVariable Long resumeId,
+            @PathVariable Long languageId,
+            @RequestHeader("X-User-Id") Long candidateId) throws Exception {
+        languageService.deleteLanguage(languageId, resumeId, candidateId);
+
+        return ResponseEntity.ok(
+                new ApiResponse("Language deleted successfully", true)
+        );
+    }
+
+
+}
